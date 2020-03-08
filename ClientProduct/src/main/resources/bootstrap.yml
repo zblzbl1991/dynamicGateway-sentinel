@@ -1,0 +1,12 @@
+server:
+  port: 18081
+spring:
+  application:
+    name: clientProduct
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.223.1:8848
+        file-extension: yml
+      discovery:
+        server-addr: 192.168.223.1:8848

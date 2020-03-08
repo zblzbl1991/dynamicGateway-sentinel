@@ -1,0 +1,47 @@
+server:
+  port: 18080
+spring:
+  cloud:
+    sentinel:
+      filter:
+        enabled: false
+      transport:
+        dashboard: 192.168.0.115:8080
+        client-ip: 192.168.0.109
+      datasource:
+        ds:
+          nacos:
+            server-addr: 127.0.0.1:8848
+            data-id: ${spring.application.name}-sentinel-degrade-rule
+            group-id: DEFAULT_GROUP
+            data-type: json
+            rule-type: degrade
+      eager: true
+    gateway:
+    #      routes:
+    #        - id: clientProduct
+    #          uri: lb://clientProduct
+    #          predicates:
+    #            - Path=/clientProduct/**
+    #          filters:
+    #            - StripPrefix=1
+    nacos:
+      #      dynamic-data-id: gateway1
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yml
+  application:
+    name: serverGateway
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+#这配置没有生效,需要启动时增加指令 -Dcsp.sentinel.statistic.max.rt=10000 配置最大响应时长为10s
+csp:
+  sentinel:
+    statistic:
+      max:
+        rt: 10000
