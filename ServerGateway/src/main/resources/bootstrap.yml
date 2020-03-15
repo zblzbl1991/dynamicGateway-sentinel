@@ -18,20 +18,25 @@ spring:
             rule-type: degrade
       eager: true
     gateway:
-    #      routes:
-    #        - id: clientProduct
-    #          uri: lb://clientProduct
-    #          predicates:
-    #            - Path=/clientProduct/**
-    #          filters:
-    #            - StripPrefix=1
+          routes:
+            - id: clientProduct
+              uri: lb://clientProduct
+              predicates:
+                - Path=/clientProduct/**
+              filters:
+                - StripPrefix=1
+            - id: clientNetty
+              uri: lb:ws://clientNetty
+              predicates:
+                - Path=/clientNetty/**
+              filters:
+                  - StripPrefix=1
     nacos:
-      #      dynamic-data-id: gateway1
-      discovery:
-        server-addr: 127.0.0.1:8848
       config:
-        server-addr: 127.0.0.1:8848
+        server-addr: 192.168.223.1:8848
         file-extension: yml
+      discovery:
+        server-addr: 192.168.223.1:8848
   application:
     name: serverGateway
 management:

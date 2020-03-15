@@ -1,0 +1,13 @@
+server:
+  port: 19000
+spring:
+  application:
+    name: clientNetty
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.223.1:8848
+        file-extension: yml
+      discovery:
+        server-addr: 192.168.223.1:8848
+        port: 19001

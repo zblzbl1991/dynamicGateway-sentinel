@@ -12,6 +12,7 @@
         <module>ServerGateway</module>
         <module>ClientProduct</module>
         <module>ClientConsumer</module>
+        <module>NettyServer</module>
     </modules>
 
     <parent>
