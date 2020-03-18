@@ -20,6 +20,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 @SpringBootApplication
 @EnableDiscoveryClient
@@ -34,7 +36,6 @@ public class NettyServerApplication implements CommandLineRunner {
 		EventLoopGroup bososGroup = new NioEventLoopGroup(1);
 		EventLoopGroup workGroup = new NioEventLoopGroup(8);
 		try {
-
 
 			serverBootstrap.group(bososGroup, workGroup);
 			serverBootstrap.channel(NioServerSocketChannel.class);
